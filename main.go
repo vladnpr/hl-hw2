@@ -9,19 +9,6 @@ type Task struct {
 
 type TasksList map[int]*Task
 
-func main() {
-	tasks := TasksList{}
-	task0 := Task{Title: "Read a book", Completed: false}
-	task1 := Task{Title: "Play some games", Completed: true}
-
-	tasks.add(&task0)
-	tasks.print()
-	tasks.add(&task1)
-	tasks.print()
-	tasks.delete(0)
-	tasks.print()
-}
-
 func (tl *TasksList) add(task *Task) {
 	var key int
 
@@ -41,7 +28,7 @@ func (tl *TasksList) add(task *Task) {
 func (tl *TasksList) delete(key int) {
 	_, ok := (*tl)[key]
 	if !ok {
-		fmt.Printf("TaskList do not contains Task with id: %d n\n", key)
+		fmt.Printf("TaskList does not contain a Task with the specified id: %d n\n", key)
 	} else {
 		delete(*tl, key)
 		fmt.Printf("Task %d has been deleted\n", key)
@@ -57,4 +44,17 @@ func (tl *TasksList) print() {
 			fmt.Printf("Task %d: %s\n", key, value.Title)
 		}
 	}
+}
+
+func main() {
+	tasks := TasksList{}
+	task0 := Task{Title: "Read a book", Completed: false}
+	task1 := Task{Title: "Play some games", Completed: true}
+
+	tasks.add(&task0)
+	tasks.print()
+	tasks.add(&task1)
+	tasks.print()
+	tasks.delete(0)
+	tasks.print()
 }
